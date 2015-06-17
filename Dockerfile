@@ -19,6 +19,9 @@ RUN chmod +x /usr/local/bin/install-sampledata
 
 
 # Install Wordpress
+
+RUN docker-php-ext-install mysqli
+
 ENV WORDPRESS_VERSION 4.2.2
 ENV WORDPRESS_UPSTREAM_VERSION 4.2.2
 ENV WORDPRESS_SHA1 d3a70d0f116e6afea5b850f793a81a97d2115039
@@ -31,9 +34,3 @@ RUN curl -o wordpress.tar.gz -SL https://wordpress.org/wordpress-${WORDPRESS_UPS
   && chown -R www-data:www-data /usr/src/wordpress
 
 RUN mv /usr/src/wordpress /var/www/htdocs/wp
-
-COPY wp-entrypoint.sh /entrypoint.sh
-
-# grr, ENTRYPOINT resets CMD now
-ENTRYPOINT ["/entrypoint.sh"]
-CMD ["apache2-foreground"]
