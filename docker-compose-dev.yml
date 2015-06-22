@@ -5,7 +5,7 @@ web:
   links:
     - mysql
   volumes:
-    - $PWD/data/mageto-file:/var/www/htdocs/media
+    - $PWD/data/mageto-files:/var/www/htdocs/media
     - $PWD/data/wp-files:/var/www/htdocs/wp/wp-content/uploads
   env_file:
     - env
